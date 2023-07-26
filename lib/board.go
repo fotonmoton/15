@@ -42,7 +42,7 @@ func NewBoard() *Board {
 // no more moves are needed and we can say that
 // board is solved.
 func (board *Board) Solved() bool {
-	return board.neededMoves() == 0
+	return board.NeededMoves() == 0
 }
 
 // Faster way to check if board is solved.
@@ -113,6 +113,13 @@ func (b *Board) Move(d Direction) {
 	b.empty[1] = newCol
 }
 
+func (b *Board) Copy() *Board {
+	return &Board{
+		grid:  b.grid,
+		empty: b.empty,
+	}
+}
+
 func (b *Board) Shuffle(steps int) []Direction {
 	moves := []Direction{}
 
@@ -148,7 +155,7 @@ func (b *Board) Shuffle(steps int) []Direction {
 // sum of number of moves each board piece should do
 // to get to desired position. It ignores real "circular"
 // moves and calculates moves as if only one piece exists on the board.
-func (board *Board) neededMoves() int {
+func (board *Board) NeededMoves() int {
 	neededMoves := 0
 
 	for row := 0; row < 4; row++ {

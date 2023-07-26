@@ -53,6 +53,14 @@ func TestPossibleDirections(t *testing.T) {
 	if isLeftPresent == -1 || isUPresent == -1 {
 		t.Error("UP and LEFT directions should be present")
 	}
+
+	board.Move(LEFT)
+
+	directions = board.PossibleDirections()
+
+	if len(directions) != 3 {
+		t.Error("should be 3 possible directions after one move left from initial state")
+	}
 }
 
 func TestMove(t *testing.T) {
