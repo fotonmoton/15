@@ -11,7 +11,7 @@ func TestSolved(t *testing.T) {
 		t.Error("cost for solved board should be 0")
 	}
 
-	if *path.Pop() != *board {
+	if *path.Peek() != *board {
 		t.Error("root board should be in path")
 	}
 
